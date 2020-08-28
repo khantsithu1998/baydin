@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "918072195935",
+    "firebase_url": "https://baydin-36156.firebaseio.com",
+    "project_id": "baydin-36156",
+    "storage_bucket": "baydin-36156.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918072195935:android:54255000d4fd64d4abd4ea",
+        "android_client_info": {
+          "package_name": "com.baydin.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918072195935-1le92nc0d2fk72jpb7trv95hanv6iaao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMpsRADGT6cZNa2hM67321WJ09a0spTP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918072195935-1le92nc0d2fk72jpb7trv95hanv6iaao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

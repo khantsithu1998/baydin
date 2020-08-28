@@ -53,11 +53,16 @@ class _MyHomePageState extends State<MyHomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     PostList(),
     Text(
-      'Bar Nyar',
+      'Coming soon',
       style: optionStyle,
     ),
 
   ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
 
   @override
@@ -92,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         ],
         currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         //selectedItemColor: Colors.amber[800],
       ),
     );

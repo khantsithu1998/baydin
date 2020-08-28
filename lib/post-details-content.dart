@@ -1,6 +1,8 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'admob_service.dart';
 
+final ams = AdMobService();
 class PostDetailsPageContent extends StatelessWidget {
   final String contentData;
   PostDetailsPageContent(this.contentData);
@@ -22,6 +24,7 @@ class TextAndButton extends StatelessWidget {
       : super(key: key);
   final String content;
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,6 +32,7 @@ class TextAndButton extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          AdmobBanner(adUnitId: ams.getBannerAdId(),adSize: AdmobBannerSize.BANNER),
           Text(
             content,
             style: Theme.of(context).textTheme.bodyText1,
