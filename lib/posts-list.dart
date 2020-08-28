@@ -1,26 +1,35 @@
+import 'package:app/post-details.dart';
+import 'package:app/post.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-
 class PostList extends StatelessWidget {
+  List<Post> postObjs = List();
   final String apiUrl = "http://blackmarkermyanmar.com/public/api/posts";
 
-  Future<List<dynamic>> fetchPosts() async {
+  Future<List<Post>> fetchPosts() async {
     var result = await http.get(apiUrl);
-    return json.decode(result.body);
+    if(result.statusCode == 200){
+      //var postObjJson =  json.decode(result.body);
+      postObjs = postFromMap(result.body);
+      print(postObjs[0].title);
+      return postObjs;
+    }else{
+      throw Exception("failed to load api");
+    }
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FutureBuilder<List<dynamic>>(
+      child: FutureBuilder<List<Post>>(
         future: fetchPosts(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data[0]["id"]);
+            print(postObjs[0].id);
             return ListView.builder(
                 padding: EdgeInsets.all(8),
-                itemCount: snapshot.data.length,
+                itemCount: postObjs.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     child: Column(
@@ -28,10 +37,18 @@ class PostList extends StatelessWidget {
                         ListTile(
                             leading: CircleAvatar(
                                 radius: 30,
-                                backgroundImage: NetworkImage("http://blackmarkermyanmar.com/public/storage/"+snapshot.data[index]['image'])),
-                          title: Text(snapshot.data[index]["title"]),
-                          subtitle: Text(snapshot.data[index]["slug"]),
+                                backgroundImage: NetworkImage("http://blackmarkermyanmar.com/public/storage/"+postObjs[index].image)),
+                          title: Text(postObjs[index].title),
+                          subtitle: Text(postObjs[index].slug),
                           //trailing: Text(snapshot.data[index]["body"]),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PostDetailsScreen(postObjs[index]),
+                              ),
+                            );
+                          },
                         )
                       ],
                     ),
