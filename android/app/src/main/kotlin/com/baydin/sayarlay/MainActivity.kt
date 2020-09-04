@@ -1,4 +1,4 @@
-package com.baydin.app
+package com.baydin.sayarlay
 
 import io.flutter.embedding.android.FlutterActivity
 
